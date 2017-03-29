@@ -210,7 +210,8 @@ int main(int argc, char **argv)
     case SimulatorPromptWindow::FLY:
       KoboRunXCSoar("-fly");
       /* return to menu after XCSoar quits */
-      break;
+      KoboPowerOff();
+      return EXIT_SUCCESS;
 
     case SimulatorPromptWindow::SIMULATOR:
       KoboRunXCSoar("-simulator");
