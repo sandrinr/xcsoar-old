@@ -21,9 +21,9 @@ sync_project() {
     container_id=$(docker run -d --rm --volumes-from $DATA_CONTAINER_NAME \
         -p 1873:873 $IMAGE_NAME rsync --daemon --no-detach)
     set +e
-    [ "$1" = "in" ] && rsync -rlptz --inplace --delete \
+    [ "$1" = "in" ] && rsync -rlptz --inplace --delete --exclude='.git/' \
             $PROJECT_ROOT/ rsync://$(docker-machine ip):1873/xcsoar/
-    [ "$1" = "out" ] && rsync -rlptz --inplace \
+    [ "$1" = "out" ] && rsync -rlptz --inplace --exclude='.git/' \
             rsync://$(docker-machine ip):1873/xcsoar/ $PROJECT_ROOT/
     set -e
     docker stop $container_id >/dev/null
