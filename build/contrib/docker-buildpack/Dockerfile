@@ -8,9 +8,9 @@ COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN true && \
     apt-get update && \
     apt-get install -y --no-install-recommends gosu rsync ca-certificates \
-        quilt build-essential crossbuild-essential-armhf python3 gawk \
-        librsvg2-bin xsltproc imagemagick gettext fakeroot \
-        ttf-bitstream-vera && \
+        quilt pkg-config build-essential crossbuild-essential-armhf python3 \
+        gawk librsvg2-bin xsltproc imagemagick gettext fakeroot \
+        ttf-bitstream-vera ffmpeg && \
     mkdir /xcsoar && chown nobody:nogroup /xcsoar && \
     chmod 0755 /usr/local/bin/entrypoint.sh && \
     apt-get clean && \
